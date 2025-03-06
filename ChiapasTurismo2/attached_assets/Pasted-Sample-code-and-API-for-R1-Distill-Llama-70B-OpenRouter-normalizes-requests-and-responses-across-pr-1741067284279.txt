@@ -1,0 +1,183 @@
+Sample code and API for R1 Distill Llama 70B
+OpenRouter normalizes requests and responses across providers for you.
+
+OpenRouter provides an OpenAI-compatible completion API to 300+ models & providers that you can call directly, or using the OpenAI SDK. Additionally, some third-party SDKs are available.
+
+In the examples below, the OpenRouter-specific headers are optional. Setting them allows your app to appear on the OpenRouter leaderboards.
+
+from openai import OpenAI
+
+client = OpenAI(
+  base_url="https://openrouter.ai/api/v1",
+  api_key="<OPENROUTER_API_KEY>",
+)
+
+completion = client.chat.completions.create(
+  extra_headers={
+    "HTTP-Referer": "<YOUR_SITE_URL>", # Optional. Site URL for rankings on openrouter.ai.
+    "X-Title": "<YOUR_SITE_NAME>", # Optional. Site title for rankings on openrouter.ai.
+  },
+  extra_body={},
+  model="deepseek/deepseek-r1-distill-llama-70b",
+  messages=[
+    {
+      "role": "user",
+      "content": "What is the meaning of life?"
+    }
+  ]
+)
+print(completion.choices[0].message.content)
+
+Using third-party SDKs
+
+For information about using third-party SDKs and frameworks with OpenRouter, please see our frameworks documentation.
+
+See the Request docs for all possible fields, and Parameters for explanations of specific sampling parameters.
+Recommended parameters for R1 Distill Llama 70B
+
+Median values from users on OpenRouter
+temperature
+
+This setting influences the variety in the model's responses. Lower values lead to more predictable and typical responses, while higher values encourage more diverse and less common responses. At 0, the model always gives the same response for a given input.
+
+    Optional, float, 0.0 to 2.0
+
+    Default: 1.0
+
+    Explainer Video: Watch
+
+p10
+1
+p50
+1
+p90
+1
+top_p
+
+This setting limits the model's choices to a percentage of likely tokens: only the top tokens whose probabilities add up to P. A lower value makes the model's responses more predictable, while the default setting allows for a full range of token choices. Think of it like a dynamic Top-K.
+
+    Optional, float, 0.0 to 1.0
+
+    Default: 1.0
+
+    Explainer Video: Watch
+
+p10
+1
+p50
+1
+p90
+1
+top_k
+
+This limits the model's choice of tokens at each step, making it choose from a smaller set. A value of 1 means the model will always pick the most likely next token, leading to predictable results. By default this setting is disabled, making the model to consider all choices.
+
+    Optional, integer, 0 or above
+
+    Default: 0
+
+    Explainer Video: Watch
+
+p10
+0
+p50
+0
+p90
+0
+frequency_penalty
+
+This setting aims to control the repetition of tokens based on how often they appear in the input. It tries to use less frequently those tokens that appear more in the input, proportional to how frequently they occur. Token penalty scales with the number of occurrences. Negative values will encourage token reuse.
+
+    Optional, float, -2.0 to 2.0
+
+    Default: 0.0
+
+    Explainer Video: Watch
+
+p10
+0
+p50
+0
+p90
+0
+presence_penalty
+
+Adjusts how often the model repeats specific tokens already used in the input. Higher values make such repetition less likely, while negative values do the opposite. Token penalty does not scale with the number of occurrences. Negative values will encourage token reuse.
+
+    Optional, float, -2.0 to 2.0
+
+    Default: 0.0
+
+    Explainer Video: Watch
+
+p10
+0
+p50
+0
+p90
+0
+repetition_penalty
+
+Helps to reduce the repetition of tokens from the input. A higher value makes the model less likely to repeat tokens, but too high a value can make the output less coherent (often with run-on sentences that lack small words). Token penalty scales based on original token's probability.
+
+    Optional, float, 0.0 to 2.0
+
+    Default: 1.0
+
+    Explainer Video: Watch
+
+p10
+1
+p50
+1
+p90
+1
+min_p
+
+Represents the minimum probability for a token to be
+considered, relative to the probability of the most likely token. (The value changes depending on the confidence level of the most probable token.) If your Min-P is set to 0.1, that means it will only allow for tokens that are at least 1/10th as probable as the best possible option.
+
+    Optional, float, 0.0 to 1.0
+
+    Default: 0.0
+
+p10
+0
+p50
+0
+p90
+0
+top_a
+
+Consider only the top tokens with "sufficiently high" probabilities based on the probability of the most likely token. Think of it like a dynamic Top-P. A lower Top-A value focuses the choices based on the highest probability token but with a narrower scope. A higher Top-A value does not necessarily affect the creativity of the output, but rather refines the filtering process based on the maximum probability.
+
+    Optional, float, 0.0 to 1.0
+
+    Default: 0.0
+
+p10
+0
+p50
+0
+p90
+0
+Sample code using the median
+
+fetch("https://openrouter.ai/api/v1/chat/completions", {
+  method: "POST",
+  headers: {
+    "Authorization": "Bearer <OPENROUTER_API_KEY>",
+    "HTTP-Referer": "<YOUR_SITE_URL>", // Optional. Site URL for rankings on openrouter.ai.
+    "X-Title": "<YOUR_SITE_NAME>", // Optional. Site title for rankings on openrouter.ai.
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    "model": "deepseek/deepseek-r1-distill-llama-70b",
+    "messages": [
+      {"role": "user", "content": "What is the meaning of life?"}
+    ],
+    "top_p": 1,
+    "temperature": 1,
+    "repetition_penalty": 1
+  })
+});

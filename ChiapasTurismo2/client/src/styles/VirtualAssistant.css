@@ -1,0 +1,99 @@
+.virtual-assistant {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  margin: 2rem auto;
+  max-width: 32rem;
+}
+
+.virtual-assistant-header {
+  background-color: #00695c;
+  color: white;
+  padding: 1.5rem;
+}
+
+.virtual-assistant-header h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.virtual-assistant-content {
+  padding: 1.5rem;
+}
+
+.question-button {
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  background: white;
+  transition: all 0.2s;
+}
+
+.question-button:hover {
+  border-color: #00695c;
+  background-color: #f9fafb;
+}
+
+.custom-question-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #00695c;
+  color: white;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+}
+
+.custom-question-button:hover {
+  background-color: #004d40;
+}
+
+.input-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.question-input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+.question-input:focus {
+  outline: none;
+  border-color: #00695c;
+  box-shadow: 0 0 0 2px rgba(0, 105, 92, 0.2);
+}
+
+.send-button {
+  padding: 0.75rem;
+  background-color: #00695c;
+  color: white;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.send-button:hover {
+  background-color: #004d40;
+}
+
+.back-button {
+  color: #6b7280;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.back-button:hover {
+  color: #00695c;
+} 

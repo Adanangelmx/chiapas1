@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Importar estilos del asistente virtual */
+@import '../styles/VirtualAssistant.css';
+
+:root {
+  --chiapas-green: #00695c;
+  --chiapas-gold: #ffd700;
+}
+
+/* ... resto del código ... */ 
